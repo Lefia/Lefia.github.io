@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lefia.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/Lefia/lefia.github.io/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#39C5BB","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"gitalk","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python Pandas 筆記">
+<meta property="og:url" content="http://lefia.github.io/Programming/python-pandas-note/index.html">
+<meta property="og:site_name" content="Lefia&#39;s Blog">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Lefia/imgs/miku/22.jpeg">
+<meta property="article:published_time" content="2021-01-24T10:16:12.000Z">
+<meta property="article:modified_time" content="2021-01-26T07:14:14.000Z">
+<meta property="article:author" content="Lefia">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Data-analysis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Lefia/imgs/miku/22.jpeg">
+
+
+<link rel="canonical" href="http://lefia.github.io/Programming/python-pandas-note/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>Python Pandas 筆記 | Lefia's Blog</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lefia's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Do or Do not. There is no try</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-certificates"><a href="/certificates/" rel="section"><i class="fa fa-certificate fa-fw"></i>certificates</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Series"><span class="nav-number">2.</span> <span class="nav-text">Series</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DataFrame"><span class="nav-number">3.</span> <span class="nav-text">DataFrame</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSV"><span class="nav-number">3.1.</span> <span class="nav-text">CSV</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Shape-and-Size"><span class="nav-number">4.</span> <span class="nav-text">Shape and Size</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Head-and-Tail"><span class="nav-number">4.1.</span> <span class="nav-text">Head and Tail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Info"><span class="nav-number">4.2.</span> <span class="nav-text">Info</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Indexing"><span class="nav-number">5.</span> <span class="nav-text">Indexing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Rows-with-loc"><span class="nav-number">5.1.</span> <span class="nav-text">Rows with .loc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rows-with-iloc"><span class="nav-number">5.2.</span> <span class="nav-text">Rows with .iloc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Columns"><span class="nav-number">5.3.</span> <span class="nav-text">Columns</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Summary-Statistics"><span class="nav-number">6.</span> <span class="nav-text">Summary Statistics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Min-Max-Mean"><span class="nav-number">6.1.</span> <span class="nav-text">Min &#x2F; Max &#x2F; Mean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quantiles"><span class="nav-number">6.2.</span> <span class="nav-text">Quantiles</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Variance-and-Standard-Deviation"><span class="nav-number">6.3.</span> <span class="nav-text">Variance and Standard Deviation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#describe"><span class="nav-number">6.4.</span> <span class="nav-text">describe()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Categorical-Variable"><span class="nav-number">6.5.</span> <span class="nav-text">Categorical Variable</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Groupby-and-Aggregations"><span class="nav-number">7.</span> <span class="nav-text">Groupby and Aggregations</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lefia"
+      src="/images/lefia.png">
+  <p class="site-author-name" itemprop="name">Lefia</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button site-overview-item animated">
+    <a onclick="Chatra('openChat', true);"><i class="fa fa-comments"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Lefia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Lefia" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lefia1222@gmail.com" title="E-Mail → mailto:lefia1222@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/lefia20" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;lefia20" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/lefia1222" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;lefia1222" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/yi_cheng_tseng_lefia" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;yi_cheng_tseng_lefia" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://lefia.github.io/Programming/python-pandas-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/lefia.png">
+      <meta itemprop="name" content="Lefia">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lefia's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python Pandas 筆記
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-01-24 18:16:12" itemprop="dateCreated datePublished" datetime="2021-01-24T18:16:12+08:00">2021-01-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-26 15:14:14" itemprop="dateModified" datetime="2021-01-26T15:14:14+08:00">2021-01-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Programming/" itemprop="url" rel="index"><span itemprop="name">Programming</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>2.3k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>2 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <img src="https://cdn.jsdelivr.net/gh/Lefia/imgs/miku/22.jpeg" width="80%" style="border-radius:3em;">
+
+<a id="more"></a>
+
+<hr>
+<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><ul>
+<li>Pandas 是以 Numpy 為基礎來建立的</li>
+<li>Numpy 和 Pandas 有許多共同的方法(method)及函數(function)</li>
+</ul>
+<p>在 Python 中使用  Pandas:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>透過 pip 下載 Pandas: <a target="_blank" rel="noopener" href="https://pypi.org/project/pandas/">https://pypi.org/project/pandas/</a></p>
+</blockquote>
+<h1 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h1><p>Series 是一個能儲存任何資料型態的一維數組，和試算表中的欄(column)類似<br>我們能以 array、Numpy array，甚至是 dictionary 來建立一個 Series </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 array 來建立一個 series</span></span><br><span class="line">pd.Series([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], index=[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]) <span class="comment"># 用 index 來自定索引</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 dictionary 來建立一個 series</span></span><br><span class="line">pd.Series(&#123;<span class="string">&#x27;a&#x27;</span>:<span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>:<span class="number">2</span>, <span class="string">&#x27;c&#x27;</span>:<span class="number">3</span>&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>若沒有特別指定索引，將會從0開始</p>
+</blockquote>
+<h1 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h1><p>在資料科學中，單維度的 Series 對我們的數據是不足夠的<br>DataFrame 是一個二維數組，包含了欄(column)和列(row)<br>我們能傳入一個字典來建立一個 DataFrame:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">computers = &#123;</span><br><span class="line">    <span class="string">&#x27;notebook&#x27;</span>: [<span class="number">5</span>, <span class="number">6</span>, <span class="number">3</span>],</span><br><span class="line">    <span class="string">&#x27;desktop&#x27;</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line">&#125;</span><br><span class="line">sales = pd.DataFrame(items, index=[<span class="string">&quot;Tom&quot;</span>, <span class="string">&quot;Bob&quot;</span>, <span class="string">&quot;Elise&quot;</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="CSV"><a href="#CSV" class="headerlink" title="CSV"></a>CSV</h2><p>我們也可以選擇匯入 CSV 檔：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;path/to/file&#x27;</span>, index_col=<span class="string">&#x27;col_name&#x27;</span>)</span><br><span class="line"><span class="comment"># index_col: 將某一欄的數值設置為索引</span></span><br></pre></td></tr></table></figure>
+<h1 id="Shape-and-Size"><a href="#Shape-and-Size" class="headerlink" title="Shape and Size"></a>Shape and Size</h1><p>取得資料的形狀和大小：</p>
+<div class="tabs" id="shape-and-size"><ul class="nav-tabs"><li class="tab"><a href="#shape-and-size-1">資料形狀</a></li><li class="tab"><a href="#shape-and-size-2">資料數量</a></li><li class="tab"><a href="#shape-and-size-3">列(row)的數量</a></li><li class="tab active"><a href="#shape-and-size-4">行(column)的數量</a></li></ul><div class="tab-content"><div class="tab-pane" id="shape-and-size-1"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data.shape <span class="comment"># (列, 行）</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="shape-and-size-2"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data.size</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="shape-and-size-3"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data.shape[<span class="number">0</span>]</span><br></pre></td></tr></table></figure></div><div class="tab-pane active" id="shape-and-size-4"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data.shape[<span class="number">1</span>]</span><br></pre></td></tr></table></figure></div></div></div>
+
+
+<h2 id="Head-and-Tail"><a href="#Head-and-Tail" class="headerlink" title="Head and Tail"></a>Head and Tail</h2><p>如果我們想快速的確認物件中是否有正確的資料:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 資料的前五列(row)</span></span><br><span class="line">data.head()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 資料的後三列(row)</span></span><br><span class="line">data.tail(n=<span class="number">3</span>) <span class="comment"># n: 資料數量</span></span><br></pre></td></tr></table></figure>
+<h2 id="Info"><a href="#Info" class="headerlink" title="Info"></a>Info</h2><p>我們可以使用<code>.info()</code>來概覽整個 DataFrame<br>輸出包括了索引、 欄名(column names)、缺失值的數量、資料型態以及記憶體用量</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data.info()</span><br></pre></td></tr></table></figure>
+<h1 id="Indexing"><a href="#Indexing" class="headerlink" title="Indexing"></a>Indexing</h1><h2 id="Rows-with-loc"><a href="#Rows-with-loc" class="headerlink" title="Rows with .loc"></a>Rows with .loc</h2><p>我們能用<code>.loc()</code>根據索引來取得某一列(row)的資料:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data.loc[<span class="string">&#x27;index_name&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 我們也能用陣列切片的概念來取得一個區間的資料</span></span><br><span class="line">data.loc[<span class="string">&#x27;index_name_1&#x27;</span>:<span class="string">&#x27;index_name_2&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>.loc</code> 不能用資料位置來取得資料 </p>
+</blockquote>
+<h2 id="Rows-with-iloc"><a href="#Rows-with-iloc" class="headerlink" title="Rows with .iloc"></a>Rows with .iloc</h2><p>相對於用索引來取得資料，在知道資料位置的前提下，我們能用<code>.iloc</code>來取得某一列(row)的資料:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data.iloc[<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 相同的，我們也能取得一個區間的資料</span></span><br><span class="line">data.iloc[<span class="number">2</span>:<span class="number">6</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="Columns"><a href="#Columns" class="headerlink" title="Columns"></a>Columns</h2><p>使用<code>.columns</code>能取得資料中全部的欄名稱(column name):</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data.columns</span><br></pre></td></tr></table></figure>
+<p>我們能用欄的名稱(column name)取得某欄(column)的資料:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data[<span class="string">&#x27;name&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取得複數欄的資料</span></span><br><span class="line">data[<span class="string">&#x27;name1&#x27;</span>, <span class="string">&#x27;name2&#x27;</span>].head() <span class="comment"># 取得前5列，欄名稱為name1和name2的資料</span></span><br></pre></td></tr></table></figure>
+<h1 id="Summary-Statistics"><a href="#Summary-Statistics" class="headerlink" title="Summary Statistics"></a>Summary Statistics</h1><h2 id="Min-Max-Mean"><a href="#Min-Max-Mean" class="headerlink" title="Min / Max / Mean"></a>Min / Max / Mean</h2><div class="tabs" id="min/max/mean"><ul class="nav-tabs"><li class="tab"><a href="#min/max/mean-1">最小值(min)</a></li><li class="tab"><a href="#min/max/mean-2">最大值(max)</a></li><li class="tab active"><a href="#min/max/mean-3">平均值(mean)</a></li></ul><div class="tab-content"><div class="tab-pane" id="min/max/mean-1"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data.<span class="built_in">min</span>()</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="min/max/mean-2"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data.<span class="built_in">max</span>()</span><br></pre></td></tr></table></figure></div><div class="tab-pane active" id="min/max/mean-3"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data.mean()</span><br></pre></td></tr></table></figure></div></div></div>
+
+<h2 id="Quantiles"><a href="#Quantiles" class="headerlink" title="Quantiles"></a>Quantiles</h2><blockquote>
+<p>分位數(Quantiles)指的就是連續分布函數中的一個點，這個點對應概率p </p>
+</blockquote>
+<p style="text-align: right;">— 維基百科</p>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#四分位數</span></span><br><span class="line">data.quantile([<span class="number">0.25</span>, <span class="number">0.5</span>, <span class="number">0.75</span>, <span class="number">1</span>]) </span><br><span class="line"></span><br><span class="line"><span class="comment">#中位數</span></span><br><span class="line">data.median()</span><br></pre></td></tr></table></figure>
+<h2 id="Variance-and-Standard-Deviation"><a href="#Variance-and-Standard-Deviation" class="headerlink" title="Variance and Standard Deviation"></a>Variance and Standard Deviation</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 變異數(Variance)</span></span><br><span class="line">data[<span class="string">&#x27;name&#x27;</span>].var()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 標準差(Standard Deviation)</span></span><br><span class="line">data[<span class="string">&#x27;name&#x27;</span>].std()</span><br></pre></td></tr></table></figure>
+<h2 id="describe"><a href="#describe" class="headerlink" title="describe()"></a>describe()</h2><p><code>describe()</code> 能列出前面所提到的一些統計數據，如中位數、四分位數等，並忽略所有空(null)的值(Ex: NaN)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data.describe()</span><br></pre></td></tr></table></figure>
+<h2 id="Categorical-Variable"><a href="#Categorical-Variable" class="headerlink" title="Categorical Variable"></a>Categorical Variable</h2><p>如果是用來分類的數據，用來與其他資料進行統計是沒有意義的<br>我們可以用<code>value_counts()</code>來列出unique values和出現次數:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data[<span class="string">&#x27;categorical variable&#x27;</span>].value_counts()</span><br></pre></td></tr></table></figure>
+<p>我們也可以用 <code>describe()</code> 來列出unique values、出現次數和出現頻率最高的的 unique values:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data[<span class="string">&#x27;categorical variable&#x27;</span>].describe()</span><br></pre></td></tr></table></figure>
+<h1 id="Groupby-and-Aggregations"><a href="#Groupby-and-Aggregations" class="headerlink" title="Groupby and Aggregations"></a>Groupby and Aggregations</h1><mark class="label info">筆記持續更新中</mark>
+
+
+<blockquote>
+<p>參考資料:<br>SoloLearn <a target="_blank" rel="noopener" href="https://www.sololearn.com/learning/1093">Data Science</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Lefia
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="http://lefia.github.io/Programming/python-pandas-note/" title="Python Pandas 筆記">http://lefia.github.io/Programming/python-pandas-note/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-TW" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Data-analysis/" rel="tag"># Data-analysis</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Programming/python-discord-bot-note/" rel="prev" title="Python-Discord機器人">
+                  <i class="fa fa-chevron-left"></i> Python-Discord機器人
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Programming/js-note/" rel="next" title="Javascript 筆記">
+                  Javascript 筆記 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lefia</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>Symbols count total: </span>
+    <span title="Symbols count total">13k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>Reading time total &asymp;</span>
+    <span title="Reading time total">12 mins.</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-600a9fbe12ac1a53" async="async"></script>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+  <script data-pjax>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : 29058,
+      el    : 'wpac-rating',
+      color : '#39C5BB'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4.8.3/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.9.2/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
+
+  <script>
+    (function(d, w, c) {
+      w.ChatraID = 'vpzaqfrYXrw5LRNKx';
+      var s = d.createElement('script');
+      w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments);
+      };
+      s.async = true;
+      s.src = 'https://call.chatra.io/chatra.js';
+      if (d.head) d.head.appendChild(s);
+    })(document, window, 'Chatra');
+  </script>
+
+
+<script data-pjax>
+if (document.querySelectorAll('.pdf-container').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/pdfobject@2.2.4/pdfobject.min.js', () => {
+    document.querySelectorAll('.pdf-container').forEach(element => {
+      PDFObject.embed(element.dataset.target, element, {
+        pdfOpenParams: {
+          navpanes : 0,
+          toolbar  : 0,
+          statusbar: 0,
+          pagemode : 'thumbs',
+          view     : 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height   : element.dataset.height
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    <div class="pjax">
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments('.gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'a31af546fdedaca5c1ac',
+      clientSecret: '2b8d978791de3828f6b90a2b2c2fa07b23988e71',
+      repo        : 'Lefia.github.io',
+      owner       : 'Lefia',
+      admin       : ['Lefia'],
+      id          : '0bdce7ca21c069c698cadf0f017eeb61',
+        language: 'zh-TW',
+      distractionFreeMode: true
+    });
+    gitalk.render(document.querySelector('.gitalk-container'));
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
+</html>

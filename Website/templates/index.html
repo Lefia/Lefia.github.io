@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lefia.github.io","root":"/","images":"//cdn.jsdelivr.net/gh/Lefia/lefia.github.io/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#39C5BB","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"gitalk","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="用最基礎的HTML模板和簡單容易上手的Github Desktop來架設網站">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML templates + Github">
+<meta property="og:url" content="http://lefia.github.io/Website/templates/index.html">
+<meta property="og:site_name" content="Lefia&#39;s Blog">
+<meta property="og:description" content="用最基礎的HTML模板和簡單容易上手的Github Desktop來架設網站">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Lefia/imgs/miku/15.jpg">
+<meta property="og:image" content="http://lefia.github.io/images/post/template-github/tg01.png">
+<meta property="og:image" content="http://lefia.github.io/images/post/template-github/tg02.png">
+<meta property="og:image" content="http://lefia.github.io/images/post/template-github/tg03.png">
+<meta property="og:image" content="http://lefia.github.io/images/post/template-github/tg04.png">
+<meta property="og:image" content="http://lefia.github.io/images/post/template-github/tg05.png">
+<meta property="og:image" content="http://lefia.github.io/images/post/template-github/tg06.png">
+<meta property="og:image" content="http://lefia.github.io/images/post/template-github/tg07.png">
+<meta property="og:image" content="http://lefia.github.io/images/post/template-github/tg08.png">
+<meta property="og:image" content="http://lefia.github.io/images/post/template-github/tg09.png">
+<meta property="og:image" content="http://lefia.github.io/images/post/template-github/tg10.png">
+<meta property="og:image" content="http://lefia.github.io/images/post/template-github/tg11.png">
+<meta property="og:image" content="http://lefia.github.io/images/post/template-github/tg12.png">
+<meta property="og:image" content="http://lefia.github.io/images/post/template-github/tg13.png">
+<meta property="og:image" content="http://lefia.github.io/images/post/template-github/tg14.png">
+<meta property="article:published_time" content="2020-09-15T15:12:53.000Z">
+<meta property="article:modified_time" content="2021-02-10T00:25:36.000Z">
+<meta property="article:author" content="Lefia">
+<meta property="article:tag" content="Html">
+<meta property="article:tag" content="Github">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Lefia/imgs/miku/15.jpg">
+
+
+<link rel="canonical" href="http://lefia.github.io/Website/templates/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>HTML templates + Github | Lefia's Blog</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lefia's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Do or Do not. There is no try</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-certificates"><a href="/certificates/" rel="section"><i class="fa fa-certificate fa-fw"></i>certificates</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99-amp-Github-Desktop-%E8%A8%AD%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">事前準備 &amp; Github Desktop 設置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BC%89-html-%E6%A8%A1%E6%9D%BF"><span class="nav-number">2.</span> <span class="nav-text">下載 html 模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8A%E5%82%B3%E8%87%B3%E4%B8%8A%E5%82%B3%E8%87%B3-Github"><span class="nav-number">3.</span> <span class="nav-text">上傳至上傳至 Github</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lefia"
+      src="/images/lefia.png">
+  <p class="site-author-name" itemprop="name">Lefia</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button site-overview-item animated">
+    <a onclick="Chatra('openChat', true);"><i class="fa fa-comments"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Lefia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Lefia" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lefia1222@gmail.com" title="E-Mail → mailto:lefia1222@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/lefia20" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;lefia20" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/lefia1222" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;lefia1222" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/yi_cheng_tseng_lefia" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;yi_cheng_tseng_lefia" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://lefia.github.io/Website/templates/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/lefia.png">
+      <meta itemprop="name" content="Lefia">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lefia's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HTML templates + Github
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-09-15 23:12:53" itemprop="dateCreated datePublished" datetime="2020-09-15T23:12:53+08:00">2020-09-15</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-02-10 08:25:36" itemprop="dateModified" datetime="2021-02-10T08:25:36+08:00">2021-02-10</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Website/" itemprop="url" rel="index"><span itemprop="name">Website</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>504</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>1 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <img src="https://cdn.jsdelivr.net/gh/Lefia/imgs/miku/15.jpg" width="80%" style="border-radius:3em;">
+
+<p>用最基礎的HTML模板和簡單容易上手的Github Desktop來架設網站</p>
+<a id="more"></a>
+
+<hr>
+<div class="note warning"><p>本教學以 Windows 為主</p>
+</div>
+<h1 id="事前準備-amp-Github-Desktop-設置"><a href="#事前準備-amp-Github-Desktop-設置" class="headerlink" title="事前準備 &amp; Github Desktop 設置"></a>事前準備 &amp; Github Desktop 設置</h1><ol>
+<li>進入 <a target="_blank" rel="noopener" href="https://github.com/">Github</a> 的網站，點擊 <code>Sign up</code> 註冊帳號</li>
+</ol>
+<p><img src="/images/post/template-github/tg01.png"></p>
+<ol start="2">
+<li>註冊完後，重新登入</li>
+</ol>
+<p><img src="/images/post/template-github/tg02.png"></p>
+<ol start="3">
+<li>進入主畫面，點選 <code>NEW</code> 創建新的資料庫 ( repository )</li>
+</ol>
+<p><img src="/images/post/template-github/tg03.png"></p>
+<ol start="4">
+<li>依照下圖步驟操作</li>
+</ol>
+<p><img src="/images/post/template-github/tg04.png"></p>
+<ol start="5">
+<li>開啟新視窗，安裝 <a target="_blank" rel="noopener" href="https://desktop.github.com/">Github Desktop</a></li>
+</ol>
+<p><img src="/images/post/template-github/tg05.png"></p>
+<ol start="6">
+<li>安裝完成後，回到 Github，點選 <code>Set up in Desktop</code></li>
+</ol>
+<p><img src="/images/post/template-github/tg06.png"></p>
+<ol start="7">
+<li>依照下圖步驟操作</li>
+</ol>
+<p><img src="/images/post/template-github/tg07.png"></p>
+<h1 id="下載-html-模板"><a href="#下載-html-模板" class="headerlink" title="下載 html 模板"></a>下載 html 模板</h1><ol start="8">
+<li>進入 <a target="_blank" rel="noopener" href="https://templated.co/">TEMPLATED</a> 的首頁</li>
+</ol>
+<p><img src="/images/post/template-github/tg08.png"></p>
+<ol start="9">
+<li><p>選擇自己喜歡的模板 ( 右下角有 “Responsive HTML5 Template” 能夠將頁面自動調整至符合裝置的大小 )</p>
+<p>點擊 <code>DEMO</code> 預覽頁面的樣式，點擊 <code>DOWNLOAD</code> 下載模板壓縮檔</p>
+</li>
+</ol>
+<p><img src="/images/post/template-github/tg09.png"></p>
+<p><img src="/images/post/template-github/tg10.png"></p>
+<ol start="10">
+<li>將下載的模板解壓縮後，放到 <code>步驟8</code> 所選擇的資料夾中</li>
+</ol>
+<p><img src="/images/post/template-github/tg11.png"></p>
+<h1 id="上傳至上傳至-Github"><a href="#上傳至上傳至-Github" class="headerlink" title="上傳至上傳至 Github"></a>上傳至上傳至 Github</h1><ol start="11">
+<li>回到 <code>Github Desktop</code> 中，可以發現左手邊的 <code>Changes</code> 多了很多檔案。依照下圖步驟操作，將檔案上傳至 Github</li>
+</ol>
+<p><img src="/images/post/template-github/tg12.png"></p>
+<ol start="12">
+<li>回到 Github ，重新整理後，可以看見剛才上傳的檔案</li>
+</ol>
+<p><img src="/images/post/template-github/tg13.png"></p>
+<ol start="13">
+<li>在瀏覽器輸入 https://使用者名稱.github.io 後按 <code>enter</code>，就能看見自己的網站了</li>
+</ol>
+<p><img src="/images/post/template-github/tg14.png"></p>
+<div class="note info"><p>上傳之後，要過一段時間才看的見修改的內容</p>
+</div>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Lefia
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="http://lefia.github.io/Website/templates/" title="HTML templates + Github">http://lefia.github.io/Website/templates/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-TW" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Html/" rel="tag"># Html</a>
+              <a href="/tags/Github/" rel="tag"># Github</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Programming/cpp-basis/" rel="prev" title="C++基礎教學">
+                  <i class="fa fa-chevron-left"></i> C++基礎教學
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Website/hexo-install/" rel="next" title="Hexo的安裝與配置">
+                  Hexo的安裝與配置 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lefia</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>Symbols count total: </span>
+    <span title="Symbols count total">13k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>Reading time total &asymp;</span>
+    <span title="Reading time total">12 mins.</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-600a9fbe12ac1a53" async="async"></script>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+  <script data-pjax>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : 29058,
+      el    : 'wpac-rating',
+      color : '#39C5BB'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4.8.3/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.9.2/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
+
+  <script>
+    (function(d, w, c) {
+      w.ChatraID = 'vpzaqfrYXrw5LRNKx';
+      var s = d.createElement('script');
+      w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments);
+      };
+      s.async = true;
+      s.src = 'https://call.chatra.io/chatra.js';
+      if (d.head) d.head.appendChild(s);
+    })(document, window, 'Chatra');
+  </script>
+
+
+<script data-pjax>
+if (document.querySelectorAll('.pdf-container').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/pdfobject@2.2.4/pdfobject.min.js', () => {
+    document.querySelectorAll('.pdf-container').forEach(element => {
+      PDFObject.embed(element.dataset.target, element, {
+        pdfOpenParams: {
+          navpanes : 0,
+          toolbar  : 0,
+          statusbar: 0,
+          pagemode : 'thumbs',
+          view     : 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height   : element.dataset.height
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    <div class="pjax">
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments('.gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'a31af546fdedaca5c1ac',
+      clientSecret: '2b8d978791de3828f6b90a2b2c2fa07b23988e71',
+      repo        : 'Lefia.github.io',
+      owner       : 'Lefia',
+      admin       : ['Lefia'],
+      id          : 'd93c31b40bb3844b0c29f5d1c2b45c37',
+        language: 'zh-TW',
+      distractionFreeMode: true
+    });
+    gitalk.render(document.querySelector('.gitalk-container'));
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
+</html>
