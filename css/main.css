@@ -3012,7 +3012,7 @@ ul.breadcrumb li:last-child {
   }
 }
 body {
-  background: url("https://cdn.jsdelivr.net/gh/Lefia/imgs/anime/4.jpg");
+  background: url("/images/collections/1.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -3058,6 +3058,12 @@ pre {
 }
 .footer {
   color: #fff;
+}
+.header-inner {
+  border-radius: 0 0 10px 10px;
+}
+.sidebar-inner {
+  border-radius: 10px;
 }
 .btn {
   color: #39c5bb;
